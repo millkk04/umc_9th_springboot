@@ -9,6 +9,9 @@ import org.springframework.data.repository.query.Param;
 
 public interface MemberMissionRepository extends JpaRepository<MemberMission, Long> {
 
+    // 회원이 특정 미션에 이미 도전 중인지 확인
+    boolean existsByMemberIdAndMissionId(Long memberId, Long missionId);
+
     //진행중 미션 (페이징)
     @Query("""
            select mm

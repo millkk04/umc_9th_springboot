@@ -1,4 +1,4 @@
-package com.example.umc_9th_final_5th.domain.review.dto;
+package com.example.umc_9th_final_5th.domain.review.dto.res;
 
 import com.example.umc_9th_final_5th.domain.review.entity.Review;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,22 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ReviewResponseDto {
+public class ReviewResDTO {
+
+    /**
+     * 리뷰 생성 응답 DTO
+     */
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CreateReviewResultDTO {
+        private Long reviewId;
+        private Long storeId;
+        private String storeName;
+        private Float star;
+        private LocalDateTime createdAt;
+    }
 
     @Getter
     @Builder

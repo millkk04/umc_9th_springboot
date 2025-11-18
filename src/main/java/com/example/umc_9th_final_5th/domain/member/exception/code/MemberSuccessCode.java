@@ -1,4 +1,4 @@
-package com.example.umc_9th_final_5th.domain.member.code;
+package com.example.umc_9th_final_5th.domain.member.exception.code;
 
 import com.example.umc_9th_final_5th.global.apiPayload.code.BaseSuccessCode;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ public enum MemberSuccessCode implements BaseSuccessCode {
             "회원가입이 완료되었습니다."),
     MEMBER_FOUND(HttpStatus.OK,
             "MEMBER200_1",
-            "회원 조회에 성공했습니다."),
+            "성공적으로 사용자를 조회했습니다."),
     MEMBER_UPDATED(HttpStatus.OK,
             "MEMBER200_2",
             "회원 정보가 수정되었습니다."),
@@ -33,4 +33,3 @@ public enum MemberSuccessCode implements BaseSuccessCode {
     private final String code;
     private final String message;
 }
-

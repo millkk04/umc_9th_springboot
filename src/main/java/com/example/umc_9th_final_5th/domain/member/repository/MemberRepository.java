@@ -7,6 +7,9 @@ import org.springframework.data.repository.query.Param;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
+    // 이메일 중복 체크
+    boolean existsByEmail(String email);
+
     //현재 포인트
     @Query("select m.point from Member m where m.id = :memberId")
     Integer findPoint(@Param("memberId") Long memberId);

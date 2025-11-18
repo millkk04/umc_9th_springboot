@@ -1,4 +1,4 @@
-package com.example.umc_9th_final_5th.domain.mission.code;
+package com.example.umc_9th_final_5th.domain.mission.exception.code;
 
 import com.example.umc_9th_final_5th.global.apiPayload.code.BaseSuccessCode;
 import lombok.AllArgsConstructor;
