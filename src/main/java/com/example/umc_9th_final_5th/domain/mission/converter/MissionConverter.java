@@ -6,6 +6,7 @@ import com.example.umc_9th_final_5th.domain.mission.dto.req.MissionReqDTO;
 import com.example.umc_9th_final_5th.domain.mission.dto.res.MissionResDTO;
 import com.example.umc_9th_final_5th.domain.mission.entity.Mission;
 import com.example.umc_9th_final_5th.domain.store.entity.Store;
+import org.springframework.data.domain.Page;
 
 public class MissionConverter {
 
@@ -63,5 +64,38 @@ public class MissionConverter {
                 .createdAt(mission.getCreatedAt())
                 .storeId(mission.getStore().getId())
                 .build();
+    }
+
+    /**
+     * Page<Mission> -> MissionPageDTO 변환
+     */
+    public static MissionResDTO.MissionPageDTO toMissionPageDTO(Page<Mission> missionPage) {
+        return MissionResDTO.MissionPageDTO.of(missionPage);
+    }
+
+    /**
+     * MemberMission -> MyMissionDTO 변환
+     */
+    public static MissionResDTO.MyMissionDTO toMyMissionDTO(MemberMission memberMission) {
+        Mission mission = memberMission.getMission();
+
+        return MissionResDTO.MyMissionDTO.builder()
+                .memberMissionId(memberMission.getId())
+                .missionId(mission.getId())
+                .storeName(mission.getStore().getName())
+                .conditional(mission.getConditional())
+                .point(mission.getPoint())
+                .deadline(mission.getDeadline())
+                .isComplete(memberMission.getIsComplete())
+                .startedAt(memberMission.getCreatedAt())
+                .build();
+    }
+
+    /**
+     * Page<MemberMission> -> MyMissionPageDTO 변환
+     */
+    public static MissionResDTO.MyMissionPageDTO toMyMissionPageDTO(Page<MemberMission> memberMissionPage) {
+        Page<MissionResDTO.MyMissionDTO> myMissionDTOPage = memberMissionPage.map(MissionConverter::toMyMissionDTO);
+        return MissionResDTO.MyMissionPageDTO.of(myMissionDTOPage);
     }
 }

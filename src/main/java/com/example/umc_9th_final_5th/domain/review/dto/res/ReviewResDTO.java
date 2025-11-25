@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,18 +28,32 @@ public class ReviewResDTO {
         private LocalDateTime createdAt;
     }
 
+    /**
+     * 페이징 처리된 리뷰 목록 응답 DTO
+     * (필터링 + 페이징 통합)
+     */
     @Getter
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class ReviewListDto {
-        private Integer totalCount;
+    public static class ReviewPageDto {
+        private Integer currentPage;
+        private Integer totalPages;
+        private Long totalElements;
+        private Integer pageSize;
+        private Boolean hasNext;
+        private Boolean hasPrevious;
         private List<ReviewDto> reviews;
 
-        public static ReviewListDto of(List<Review> reviewList) {
-            return ReviewListDto.builder()
-                    .totalCount(reviewList.size())
-                    .reviews(reviewList.stream()
+        public static ReviewPageDto of(Page<Review> reviewPage) {
+            return ReviewPageDto.builder()
+                    .currentPage(reviewPage.getNumber())
+                    .totalPages(reviewPage.getTotalPages())
+                    .totalElements(reviewPage.getTotalElements())
+                    .pageSize(reviewPage.getSize())
+                    .hasNext(reviewPage.hasNext())
+                    .hasPrevious(reviewPage.hasPrevious())
+                    .reviews(reviewPage.getContent().stream()
                             .map(ReviewDto::of)
                             .collect(Collectors.toList()))
                     .build();

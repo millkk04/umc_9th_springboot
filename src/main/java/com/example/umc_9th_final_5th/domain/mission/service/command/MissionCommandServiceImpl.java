@@ -2,13 +2,13 @@ package com.example.umc_9th_final_5th.domain.mission.service.command;
 
 import com.example.umc_9th_final_5th.domain.member.entity.Member;
 import com.example.umc_9th_final_5th.domain.member.entity.mapping.MemberMission;
+import com.example.umc_9th_final_5th.domain.member.repository.MemberMissionRepository;
 import com.example.umc_9th_final_5th.domain.member.repository.MemberRepository;
 import com.example.umc_9th_final_5th.domain.mission.converter.MissionConverter;
 import com.example.umc_9th_final_5th.domain.mission.dto.req.MissionReqDTO;
 import com.example.umc_9th_final_5th.domain.mission.entity.Mission;
 import com.example.umc_9th_final_5th.domain.mission.exception.MissionException;
 import com.example.umc_9th_final_5th.domain.mission.exception.code.MissionErrorCode;
-import com.example.umc_9th_final_5th.domain.mission.repository.MemberMissionRepository;
 import com.example.umc_9th_final_5th.domain.mission.repository.MissionRepository;
 import com.example.umc_9th_final_5th.domain.store.entity.Store;
 import com.example.umc_9th_final_5th.domain.store.repository.StoreRepository;
